@@ -8,7 +8,7 @@
     <div class="errors">{{this}}</div>
     {{/each}}
 
-    <form name="form" action="/registration" method="POST" onsubmit="return validation()">
+    <form name="form" action="/registration" method="POST" onsubmit="return service.validation()">
         <div class="form-group">
             <input id="email" name="email" value="{{email}}" type="email" placeholder="Email address"
                 class="form-control" />

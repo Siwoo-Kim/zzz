@@ -9,10 +9,10 @@ const hasAccessAd = require("../middleware/userAuth");
 router.get("/registration",(req,res)=>{
     res.render("registration");
 });
-router.post("/registration", (req, res) => {
 
+router.post("/registration", (req, res) => {
     const errors = [];
-    const {fname,lname,username, email, password2, pwdMatch} = req.body;
+    const {fname, lname, username, email, password2, pwdMatch} = req.body;
     if (fname === "" || lname === "") {
         errors.push("Enter your name");
     }
@@ -39,20 +39,14 @@ router.post("/registration", (req, res) => {
         errors.push( "Enter your email");
     }
 
-    if (username === "") {
-        errors.push( "Enter your username");
-    }
-
     //There is an error
     if (errors.length > 0) {
         res.render("registration", {
             messages: errors,
-         
         })
     }
     // there is no error
     else {
-
         userModel.findOne({ email: req.body.email })
             .then((user) => {
                 //there was matching email
@@ -68,7 +62,6 @@ router.post("/registration", (req, res) => {
                         fname: fname,
                         lname: lname,
                         email: email,
-                        username: username,
                         password2: password2
                     }
 

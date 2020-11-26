@@ -9,17 +9,14 @@ var userSchema = new Schema({
         type:String,
         unique:true
     },
-    username:{
+    username:{      //where is this from? 
+                    // is it same with email?
         type:String,
         unique:true
     },
-    
     fname: String,
-
-    lname: String, 
-
-    password2:String, 
- 
+    lname: String,
+    password2:String,
     isAdmin:{
         type:Boolean,
         default:false

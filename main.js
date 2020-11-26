@@ -35,7 +35,7 @@ app.use("/", control);
 
 // mongo db connection
 const connStr = config.dbconn;
-mongoose.connect(connStr, { useNewUrlParser: true, useUnifiedTopology: true, useCreateIndex: true });
+mongoose.connect("mongodb://localhost/tamhome", { useNewUrlParser: true, useUnifiedTopology: true, useCreateIndex: true });
 mongoose.connection.on("open", () => {
   console.log("Database connection open.");
 });
