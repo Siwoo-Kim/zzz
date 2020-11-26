@@ -1,0 +1,75 @@
+<div class="modal fade" role="dialog" id="signUpPage">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title w-100">Sign Up</h3>
+                <button type="button" class="close" data-dismiss="modal">
+                    &times;
+                </button>
+            </div>
+
+
+
+            <form name="form2" action="/signUp" method="POST" onsubmit="return validation2()">
+                <div class="form-group">
+                    <input id="email" name="email" value="{{email}}" type="email" placeholder="Email address"
+                        class="form-control" />
+                    <small id="email_error"></small>
+                    {{!-- <p class="error">{{errorLast}}</p><br> --}}
+                </div>
+
+                <div class="form-group">
+                    <input id="fname" name="fname" value="{{fname}}" type="fname" placeholder="First name"
+                        class="form-control" />
+                    <small id="fname_error"></small>
+                    {{!-- <p class="error">{{errorName}}</p><br> --}}
+
+                </div>
+
+                <div class="form-group">
+                    <input id="lname" type="lname" name="lname" value="{{lname}}" placeholder="Last name"
+                        class="form-control" />
+                    <small id="lname_error"></small>
+                    {{!-- <p class="error">{{errorLast}}</p><br> --}}
+                    </span>
+                </div>
+
+                <div class="form-group">
+                    <input id="password2" type="password2" value="{{password2}}" name="password2"
+                        placeholder="Create a Password" class="form-control" />
+                    <small id="pass2_error"></small>
+                    {{!-- <p class="error">{{errorPass2}}</p><br> --}}
+                    </span>
+                </div>
+                <hr />
+
+                <!-- birthday selection -->
+                <div class="birthday-form">
+                    <h6 class="font-weight-bold">Birthday</h6>
+                    <p class="form-desc">
+                        To sign up, you need to be at least 18. Other people who use
+                        TamHome won't see your birthday. <br>
+                        We'll send you marketing promotions, special offers,
+                        inspiration, and policy updates via email.
+                    </p>
+
+                    <div class="birthday-selection">
+                        <select id="month" name="month">
+                            <option value="month">Month</option>
+                        </select>
+                        <select id="day" name="day">
+                            <option value="day">Day</option>
+                        </select>
+                        <select id="year" name="year">
+                            <option value="year">Year</option>
+                        </select>
+                    </div>
+                </div>
+                <button type="submit" class="btn btn-primary btn-block">
+                    Sign up
+                </button>
+            </form>
+        </div>
+    </div>
+</div>
+</div>

@@ -1,0 +1,211 @@
+{{>header}}
+
+
+{{!-- 1. info show --}}
+<div id="content-wrapper">
+  <div class="column">
+    <img class="img-fluid" src="./images/room1.jpg" alt="" />
+  </div>
+  <div class="column">
+    <p class="new text-center">NEW</p>
+    <h2 class="py-3 font-weight-bold">Toronto Loft 7 with Patio!</h2>
+    <h5 class="pt-2 pl-3">6 Bedrooms</h5>
+    <p class="pl-3">
+      These bedrooms should be very comfortable spaces in this apartment.
+      There are six different interior of rooms you can choose.
+    </p>
+    <h5 class="pt-2 pl-3">4 Washrooms</h5>
+    <p class="pl-3">We have various size of four different washrooms.</p>
+  </div>
+</div>
+
+{{!-- room description --}}
+<div class="container">
+  <div class="info">
+    <p class="font-weight-bold mt-4">Cozy entire Apartment</p>
+    <i class="fas fa-star"></i>
+    <span class="font-weight-bold">4.70</span>
+    <small>(41)</small>
+    <span class="heading pl-2">Toronto, Ontario, Canada</span>
+  </div>
+  <hr />
+  <!-- icon boxes -->
+  <div class="container">
+    <div class="row row-cols-4">
+      <div class="col">
+        <i class="fa fa-home fa-2x mb-3"></i>
+        <p>Entire Apartment</p>
+        <small>You'll have the entire house to yourself</small>
+      </div>
+
+      <div class="col">
+        <i class="fa fa-hand-sparkles fa-2x mb-3"></i>
+        <p>Clean</p>
+        <small>Committed to enhanced cleaning protocol</small>
+      </div>
+
+      <div class="col">
+        <i class="fa fa-calendar-minus fa-2x mb-3"></i>
+        <p>Cancellation policy</p>
+        <small>Add your trip dates to get the cancellation details for this
+          stay.</small>
+      </div>
+
+      <div class="col">
+        <i class="fa fa-door-closed fa-2x mb-3"></i>
+        <p>Self Check In</p>
+        <small>Check yourself in with the keypad</small>
+      </div>
+    </div>
+    <hr />
+  </div>
+</div>
+
+
+<div id="content-wrapper">
+  <div class="column">
+    <p class="feature my-3">
+      A king-sized bed, an amazing view, and top-of-the-line amenities. What
+      more could you ask for? This property has both comfort and convenience:
+      it's only a ten-minute walk away from Saint Lawrence Market as well as
+      High Park. That means if you're here for a brief stay, you can see some
+      of Toronto's most amazing sights. If you're here for longer, you're
+      right where you need to be! Appliances are all modern and the building
+      even has a pool and gym. The size of the apartment is 900 square feet.
+    </p>
+  </div>
+
+  <div class="column">
+    <form class="room-line container">
+      {{!-- 1.price --}}
+      <div class="price">
+        <h3 class="text-bold pt-2">
+          $100 / night
+        </h3>
+      </div>
+      {{!-- 2. check in out --}}
+      <div class="form-row">
+        <div class="form-group col-md-6">
+          <label>Check-in</label>
+          <input type="date" class="form-control select-date" />
+        </div>
+        <div class="form-group col-md-6">
+          <label>Check-out</label>
+          <input type="date" class="form-control select-date" />
+        </div>
+      </div>
+      {{!-- 3. guest --}}
+      <div class="form-group">
+        <label>Guests</label>
+        <input min="1" type="number" class="form-control" placeholder="Add guests" />
+      </div>
+      {{!-- Calculation --}}
+      <div class="total-calculate">
+        <p>$100 x 2 nights <span class="price">$200</span></p>
+        {{!-- <p>TAX(13%)<span class="price">$60</span></p> --}}
+        <hr>
+        <p>Total <span class="price" style="color:black"><b>$200</b></span></p>
+      </div>
+      {{!-- 4. book now button --}}
+      <button type="submit" class="book-now btn btn-primary btn-block">
+        <a href="/book">
+          Book Now
+        </a>
+      </button>
+  </div>
+</div>
+
+
+<!-- Amenities -->
+<div class="container">
+  <h4 class="font-weight-bold">Amenities</h4>
+  <div class="row row-cols-3">
+    <div class="col">
+      <i class="fa fa-wifi fa-lg"></i>
+      <p>WI-FI</p>
+    </div>
+    <div class="col">
+      <i class="fa fa-parking fa-lg"></i>
+      <p>Free-parking</p>
+    </div>
+    <div class="col">
+      <i class="fa fa-utensils fa-lg"></i>
+      <p>Kitchen</p>
+    </div>
+    <div class="col">
+      <i class="fa fa-tv fa-lg"></i>
+      <p>TV</p>
+    </div>
+    <div class="col">
+      <i class="fa fa-cookie-bite fa-lg"></i>
+      <p>Free Snacks</p>
+    </div>
+    <div class="col">
+      <i class="fa fa-fan fa-lg"></i>
+      <p>Fan</p>
+    </div>
+    <div class="col">
+      <i class="fa fa-gamepad fa-lg"></i>
+      <p>Game Machine</p>
+    </div>
+    <div class="col">
+      <i class="fa fa-hot-tub fa-lg"></i>
+      <p>Hot Tub</p>
+    </div>
+    <div class="col">
+      <i class="fa fa-coffee fa-lg"></i>
+      <p>Coffee maker</p>
+    </div>
+  </div>
+
+  <!-- amenities  -->
+  <button type="button" class="mt-4 btn btn-primary" data-toggle="modal" data-target="#amenities">
+    Show all 20 amenities
+  </button>
+
+  <!-- Modal -->
+  <div class="modal fade" id="amenities" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-scrollable" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Amenities</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <div class="a-category">Basic</div>
+          <hr />
+          <ul>
+            <li class="mt-2">Wifi</li>
+            <li class="mt-2">Hot Water</li>
+            <li class="mt-2">Heating</li>
+            <li class="mt-2">Essentials</li>
+            <li class="mt-2">Air Conditioning</li>
+          </ul>
+          <div class="a-category">Dining</div>
+          <hr />
+          <ul>
+            <li class="mt-2">Microwave</li>
+            <li class="mt-2">Kitchen</li>
+            <li class="mt-2">Coffee maker</li>
+            <li class="mt-2">Cooking basics</li>
+            <li class="mt-2">Refrigerator</li>
+          </ul>
+
+          <div class="a-category">Bed and bath</div>
+          <hr />
+          <ul>
+            <li class="mt-2">Pillows and blankets</li>
+            <li class="mt-2">Shower gel</li>
+            <li class="mt-2">Bed Linens</li>
+            <li class="mt-2">Shampoo</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Footer -->
+{{>footer}}
