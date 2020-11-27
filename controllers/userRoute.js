@@ -1,114 +1,31 @@
 var express = require("express");
 const router = express.Router();
 const userModel = require("../models/userModel");
-
 var nodemailer = require("nodemailer");
 const bcrypt = require("bcryptjs");
 //const authenticated = require("../middleware/adminAuth");
 const authenticated = require("../middleware/userAuth");
+const userService = require("../service/UserService")
 
 router.get("/registration",(req,res)=>{
     res.render("registration");
 });
 
 router.post("/registration", (req, res) => {
-    const errors = [];
     const {fname,lname, email, password2, pwdMatch} = req.body;
-    if (fname === "" || lname === "") {
-        errors.push("Enter your name");
-    }
-  
-    if (password2 === "") {
-        errors.push("Enter your password" );
-    }
-    else {
-        const passwd = /(?=.*[A-Z])/;   
-        if(password2.length < 6 || password2.length > 12)
-        {
-        errors.push("Please enter between 6 - 12 characters");
-        }
-       if (!passwd.test(`${password2}`)) 
-       {
-        errors.push( "Please contain at least one uppercase");
-       }
-    }
-    if (`${pwdMatch}` !== `${password2}`) {
-        errors.push("Password is not matching");
-    }
-
-    if (email === "") {
-        errors.push( "Enter your email");
-    }
-
-    //There is an error
-    if (errors.length > 0) {
-        res.render("registration", {
-            messages: errors,
-         
-        })
-    }
-    // there is no error
-    else {
-
-        roomModel.
-        
-        userModel.findOne({ email: req.body.email })
-            .then((user) => {
-                //there was matching email
-                if (user) {
-                    errors.push("This email is already in use");
-                    res.render("registration", {
-                        messages: errors,
-                    })
-
-                } else {
-
-                   const newUser = {
-                        fname: fname,
-                        lname: lname,
-                        email: email,
-                        password2: password2
-                    }
-
-                    const register = new userModel(newUser);
-                    register.save()
-                        .then(() => {
-                            console.log('Your information was successfully inserted into database')
-                        })
-                        .catch(err => {
-                            console.log(`Error occurs while inserting data into database ${err}`);
-                    });
-                        
-
-                    //Sending email when registered successfully
-                    var transporter = nodemailer.createTransport({
-                        service:'gmail',
-                        auth: {
-                            user:'tamhome0704@gmail.com', 
-                            pass:'seneca20!'
-                        }
-                    });
-      
-                    var emailOptions = {
-                        from:'tamhome0704@gmail.com',
-                        to: req.body.email,
-                        subject:'Tamhome',
-                        html: '<p>Hello '+req.body.fname + '</p><p>Thank you for signing up at Tamhome. </p>'
-                    }
-    
-                    transporter.sendMail(emailOptions, (error, info)=> {
-                        if (error) { 
-                        console.log("Error: " + error); 
-                        }
-                        console.log("Success: " + info.response);
-                });
-            
-            
-                res.render('login', {username: req.body.fname});
-            }
-        
-        });
-    }           
+    userService.add(
+        {   
+            fname: fname, 
+            lname: lname, 
+            email: email, 
+            password2: password2
+        }, pwdMatch)
+        .then(errors => {
+            if (errors && errors.length > 0) 
+                res.render("registration", {messages: errors})
+            else
+                res.render('login', {username: req.body.fname})
+        }).catch(e => res.render("registration", {messages: ["Unknown server error"]}))
 });
 
 router.get("/login",(req,res)=>{
