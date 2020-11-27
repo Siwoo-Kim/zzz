@@ -9,11 +9,7 @@ var userSchema = new Schema({
         type:String,
         unique:true
     },
-    username:{
-        type:String,
-        unique:true
-    },
-    
+        
     fname: String,
 
     lname: String, 
@@ -25,8 +21,6 @@ var userSchema = new Schema({
         default:false
     }
   });
-
-
 
 userSchema.pre("save",function(next){
     bcrypt.genSalt(10)

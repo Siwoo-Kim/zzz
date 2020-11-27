@@ -2,13 +2,8 @@
 
 
 {{!-- 1. info show --}}
-<div id="content-wrapper">
-  <div class="column">
-    <img class="img-fluid" src="./images/room1.jpg" alt="" />
-  </div>
-  <div class="column">
-    <p class="new text-center">NEW</p>
-    <h2 class="py-3 font-weight-bold">Toronto Loft 7 with Patio!</h2>
+
+{{!--     
     <h5 class="pt-2 pl-3">6 Bedrooms</h5>
     <p class="pl-3">
       These bedrooms should be very comfortable spaces in this apartment.
@@ -17,51 +12,20 @@
     <h5 class="pt-2 pl-3">4 Washrooms</h5>
     <p class="pl-3">We have various size of four different washrooms.</p>
   </div>
-</div>
+</div> --}}
 
-{{!-- room description --}}
-<div class="container">
-  <div class="info">
-    <p class="font-weight-bold mt-4">Cozy entire Apartment</p>
-    <i class="fas fa-star"></i>
-    <span class="font-weight-bold">4.70</span>
-    <small>(41)</small>
-    <span class="heading pl-2">Toronto, Ontario, Canada</span>
+
+
+<div id="content-wrapper">
+  <div class="column">
+    <img class="img-fluid" src="./images/room1.jpg" alt="" />
   </div>
-  <hr />
-  <!-- icon boxes -->
-  <div class="container">
-    <div class="row row-cols-4">
-      <div class="col">
-        <i class="fa fa-home fa-2x mb-3"></i>
-        <p>Entire Apartment</p>
-        <small>You'll have the entire house to yourself</small>
-      </div>
+  {{!-- <div class="column">
+    <p class="new text-center">NEW</p>
+    <h2 class="py-3 font-weight-bold">Toronto Loft 7 with Patio!</h2>
+  </div> --}}
 
-      <div class="col">
-        <i class="fa fa-hand-sparkles fa-2x mb-3"></i>
-        <p>Clean</p>
-        <small>Committed to enhanced cleaning protocol</small>
-      </div>
-
-      <div class="col">
-        <i class="fa fa-calendar-minus fa-2x mb-3"></i>
-        <p>Cancellation policy</p>
-        <small>Add your trip dates to get the cancellation details for this
-          stay.</small>
-      </div>
-
-      <div class="col">
-        <i class="fa fa-door-closed fa-2x mb-3"></i>
-        <p>Self Check In</p>
-        <small>Check yourself in with the keypad</small>
-      </div>
-    </div>
-    <hr />
-  </div>
-</div>
-
-
+  {{!-- 
 <div id="content-wrapper">
   <div class="column">
     <p class="feature my-3">
@@ -73,15 +37,19 @@
       right where you need to be! Appliances are all modern and the building
       even has a pool and gym. The size of the apartment is 900 square feet.
     </p>
-  </div>
+  </div> --}}
 
   <div class="column">
-    <form class="room-line container">
+    <div class="room-line container">
+      <h3 class="title font-weight-bold">Toronto Loft 7 with Patio</h3>
+      <div class="description">
+        Entire Apartment
+      </div>
+      <div class="location mr-3 pt-5">Toronto, Ontario</div>
+      <hr>
       {{!-- 1.price --}}
       <div class="price">
-        <h3 class="text-bold pt-2">
-          $100 / night
-        </h3>
+        <h3>$130</h3>
       </div>
       {{!-- 2. check in out --}}
       <div class="form-row">
@@ -101,8 +69,7 @@
       </div>
       {{!-- Calculation --}}
       <div class="total-calculate">
-        <p>$100 x 2 nights <span class="price">$200</span></p>
-        {{!-- <p>TAX(13%)<span class="price">$60</span></p> --}}
+        <p>$130 x 2 nights <span class="price">$200</span></p>
         <hr>
         <p>Total <span class="price" style="color:black"><b>$200</b></span></p>
       </div>
@@ -112,12 +79,54 @@
           Book Now
         </a>
       </button>
+    </div>
+  </div>
+
+
+  {{!-- room description --}}
+  <div class="container">
+    {{!-- <div class="info">
+      <i class="fas fa-star"></i>
+      <span class="font-weight-bold">4.70</span>
+    </div> --}}
+    <hr />
+    <!-- icon boxes -->
+    <div class="container">
+      <div class="row row-cols-4">
+        <div class="col">
+          <i class="fa fa-home fa-2x mb-3"></i>
+          <p>Entire Apartment</p>
+          <small>You'll have the entire house to yourself</small>
+        </div>
+
+        <div class="col">
+          <i class="fa fa-hand-sparkles fa-2x mb-3"></i>
+          <p>Clean</p>
+          <small>Committed to enhanced cleaning protocol</small>
+        </div>
+
+        <div class="col">
+          <i class="fa fa-calendar-minus fa-2x mb-3"></i>
+          <p>Cancellation policy</p>
+          <small>Add your trip dates to get the cancellation details for this
+            stay.</small>
+        </div>
+
+        <div class="col">
+          <i class="fa fa-door-closed fa-2x mb-3"></i>
+          <p>Self Check In</p>
+          <small>Check yourself in with the keypad</small>
+        </div>
+      </div>
+      <hr />
+    </div>
   </div>
 </div>
 
+{{>footer}}
 
 <!-- Amenities -->
-<div class="container">
+{{!-- <div class="container">
   <h4 class="font-weight-bold">Amenities</h4>
   <div class="row row-cols-3">
     <div class="col">
@@ -156,15 +165,15 @@
       <i class="fa fa-coffee fa-lg"></i>
       <p>Coffee maker</p>
     </div>
-  </div>
+  </div> --}}
 
-  <!-- amenities  -->
-  <button type="button" class="mt-4 btn btn-primary" data-toggle="modal" data-target="#amenities">
+<!-- amenities  -->
+{{!-- <button type="button" class="mt-4 btn btn-primary" data-toggle="modal" data-target="#amenities">
     Show all 20 amenities
-  </button>
+  </button> --}}
 
-  <!-- Modal -->
-  <div class="modal fade" id="amenities" role="dialog" aria-hidden="true">
+<!-- Modal -->
+{{!-- <div class="modal fade" id="amenities" role="dialog" aria-hidden="true">
     <div class="modal-dialog modal-dialog-scrollable" role="document">
       <div class="modal-content">
         <div class="modal-header">
@@ -205,7 +214,4 @@
       </div>
     </div>
   </div>
-</div>
-
-<!-- Footer -->
-{{>footer}}
+</div> --}}

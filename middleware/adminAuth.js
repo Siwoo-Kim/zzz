@@ -1,7 +1,7 @@
   
 const hasAccessAd = (req,res)=>
 {
-    if(req.session.userInfo.role = "Admin")
+    if(req.session.user.role = "Admin")
     {
         res.redirect("/adminDashboard"); 
     }

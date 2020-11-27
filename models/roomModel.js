@@ -22,7 +22,7 @@ const roomSchema = new Schema({
         type: String,
         required: true
     },
-    pic:
+    photo:
     {
         type: String,
         require: true

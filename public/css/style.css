@@ -19,6 +19,7 @@ body {
   font-family: "Lato", sans-serif;
 }
 .room-line {
+  position: relative;
   border: 1px solid rgb(221, 221, 221);
   border-radius: 12px;
   padding: 24px;
@@ -214,11 +215,13 @@ iframe {
   position: relative;
 }
 
-.rating {
+.location {
   float: right;
-  bottom: -1px;
+  /* bottom: -1px; */
   right: 0;
   position: absolute;
+  color: palevioletred;
+  font-weight: bold;
 }
 
 /* detail apartment - entire apartment */

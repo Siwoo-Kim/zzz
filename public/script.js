@@ -1,28 +1,6 @@
 
 let islogin = document.URL.endsWith("Login");
 
-//login part
-let email = document.forms['form']['email'];
-let password2 = document.forms['form']['password2'];
-
-password2.addEventListener('textInput', pass2_verify);
-email.addEventListener('textInput', email_verify);
-let email_error = document.getElementById('email_error');  
-let password2_error = document.getElementById('pass2_error');
-
-
-if (!islogin) {
-
-    let fname = document.forms['form']['fname'];
-    let lname = document.forms['form']['lname'];
-    
-    fname.addEventListener('textInput', fname_verify);
-    lname.addEventListener('textInput', lname_verify);  
-    
-    let fname_error = document.getElementById('fname_error');
-    let lname_error = document.getElementById('lname_error');
-}
-    
 function fname_verify() {
     if(fname.value.length > 0) {
         fname.style.border = "1px solid silver";
@@ -41,7 +19,7 @@ function lname_verify(){
 
 function validation() {
     let islogin = document.URL.endsWith("Login");
- 
+
     if (email.value.length === 0 ){
         email.style.border = "1px solid red";
         email_error.style.display = "block";
@@ -49,7 +27,7 @@ function validation() {
         email.focus();
         return false;
     }
-   
+
 
     if (!islogin) {
 
@@ -70,7 +48,7 @@ function validation() {
         }
     }
     
-   if ((password2.value.length === 0) || (password2.value.length < 6) || (password2.value.length>12)){
+    if ((password2.value.length === 0) || (password2.value.length < 6) || (password2.value.length>12)){
         password2.style.border = "1px solid red";
         pass2_error.style.display = "block";
         pass2_error.innerHTML = "Must answer a password that is 6 to 12 characters";
@@ -105,13 +83,9 @@ function pass2_verify(){
     }
 }
 
-
-
-
 //birthday selection
-var months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
-
-window.onload = function(){
+if(document.getElementById("month")) {
+    var months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
 
     for(let i = 0; i < months.length; i++){
         var monthOption = document.createElement("option");
@@ -129,6 +103,32 @@ window.onload = function(){
         var yearOption = document.createElement("option");
         var year = document.getElementById("year").appendChild(yearOption);
         year.innerHTML = i;
-    }
+    }       
+}    
+//login part
 
+window.onload = function(){
+    if(document.forms['form']) {
+        console.log('wyh')
+        let email = document.forms['form']['email'];
+        let password2 = document.forms['form']['password2'];
+    
+        password2.addEventListener('textInput', pass2_verify);
+        email.addEventListener('textInput', email_verify);
+        // let email_error = document.getElementById('email_error');  
+        // let password2_error = document.getElementById('pass2_error');
+    
+    
+        if (!islogin) {
+    
+            let fname = document.forms['form']['fname'];
+            let lname = document.forms['form']['lname'];
+            
+            fname.addEventListener('textInput', fname_verify);
+            lname.addEventListener('textInput', lname_verify);  
+            
+            // let fname_error = document.getElementById('fname_error');
+            // let lname_error = document.getElementById('lname_error');
+        }
+    }
 }

@@ -1,15 +1,16 @@
 
 const express = require('express');
 const router = express.Router();
+const path = require("path");
 const roomModel= require("../models/roomModel");
 var multer = require("multer");
 
 const storage = multer.diskStorage({
-    destination: "./public/images",
+    destination: "./public/photos",
     filename: function (req, file, cb) {
       cb(null, Date.now() + path.basename(file.originalname));
     }
-});
+});  
 
 const upload = multer({ storage: storage,
     fileFilter: (req, file, cb)=>{
@@ -19,3 +20,4 @@ const upload = multer({ storage: storage,
             cb(null, false);
         }}
 });
+
