@@ -9,24 +9,14 @@ var userSchema = new Schema({
         type:String,
         unique:true
     },
-    username:{
-        type:String,
-        unique:true
-    },
-    
     fname: String,
-
     lname: String, 
-
     password2:String, 
- 
     isAdmin:{
         type:Boolean,
         default:false
     }
   });
-
-
 
 userSchema.pre("save",function(next){
     bcrypt.genSalt(10)
@@ -41,3 +31,6 @@ userSchema.pre("save",function(next){
 })
 
 module.exports = mongoose.model("Users", userSchema);
+
+
+ 

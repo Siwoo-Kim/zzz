@@ -21,19 +21,16 @@
                 - user => render userDashboard
                 - admin => render adminDashboard
                 - no => render log in --}}
-
-                {{#if userSession}}
+                {{#if fname}}
                 {{#if isAdmin}}
                 <li class="nav-item"><a class="nav-link" href="/adminDashboard">AdminDashboard</a></li>
-                <li class="nav-item"><a class="nav-link" href="/logout">Logout</a></li>
                 {{else }}
-                <li class="nav-item"><a class="nav-link" href=" /logout">Logout</a></li>
                 <li class="nav-item"><a class="nav-link" href=" /userDashboard">userDashboard</a></li>
-
                 {{/if}}
+                <li class="nav-item"><a class="nav-link" href="/logout">Logout</a></li>
                 {{else}}
                 <li class="nav-item">
-                    <a class="nav-link" href="/Login">Log-In</a>
+                    <a class="nav-link" href="/login">login</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="/registration">Sign-Up</a>

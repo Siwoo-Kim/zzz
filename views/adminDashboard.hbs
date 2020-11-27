@@ -4,53 +4,9 @@
 </div>
 <section class="container text-center my-4">
     <div class="alert alert-danger container text-center my-4" role="alert">
-        <h2 class="text-center mt-2">Welcome {{firstName}} {{lastName}}</h2>
+        <h2 class="text-center mt-2">Welcome {{fname}} {{lname}}</h2>
         <h4 class="alert-heading">What would you like to do today?</h4>
-        {{!-- <button type="button" class="btn btn-primary btn-lg"><a href="/upload">Add Room</a></button> --}}
-        <button type="button" class="btn btn-secondary btn-lg"><a href="/search">Room Lists</a></button>
+        <button type="button" class="btn btn-secondary btn-lg"><a href="/roomList">Room Lists</a></button>
     </div>
 </section>
-
-
-<div class="container room-line mt-4">
-    <form action="/upload" method="POST" enctype="multipart/form-data" id="host-room-upload">
-        <div class="row">
-            <div class="form-group col">
-                <label for="place">Room Title</label>
-                <input id="title" class="form-control" name="title" type="text" />
-            </div>
-            <div class="form-group col">
-                <label for="desc">Description</label>
-                <input id="desc" class="form-control" name="desc" type="text" />
-            </div>
-        </div>
-
-        <div class="row">
-            <div class="form-group col">
-                <label for="address">Location</label>
-                <input id="address" class="form-control" name="address" type="text" />
-            </div>
-        </div>
-
-        <div class="row">
-            <div class="form-group col">
-                <label for="photo">Photo Upload</label>
-                <div class="custom-file">
-                    {{!-- <input type="file" class="custom-file-input" id="customFile"> --}}
-                    <label class="custom-file-label">Choose file</label>
-                    <input type="file" class="custom-file-input" id="photo" name="photo" />
-                </div>
-            </div>
-
-            <div class="form-group col">
-                <label for="price"> Price</label>
-                <input id="price" class="form-control" name="price" type="text" placeholder="e.g $100" />
-            </div>
-        </div>
-        <div class="mx-auto d-block mb-2">
-            <button type="submit" class="btn btn-primary">Submit</button>
-        </div>
-    </form>
-</div>
-
 {{> footer}}

@@ -1,18 +1,19 @@
 var express = require("express");
 const router = express.Router();
 const userModel = require("../models/userModel");
+
 var nodemailer = require("nodemailer");
 const bcrypt = require("bcryptjs");
-const hasAccess = require("../middleware/adminAuth");
-const hasAccessAd = require("../middleware/userAuth");
+//const authenticated = require("../middleware/adminAuth");
+const authenticated = require("../middleware/userAuth");
 
 router.get("/registration",(req,res)=>{
     res.render("registration");
 });
-router.post("/registration", (req, res) => {
 
+router.post("/registration", (req, res) => {
     const errors = [];
-    const {fname,lname,username, email, password2, pwdMatch} = req.body;
+    const {fname,lname, email, password2, pwdMatch} = req.body;
     if (fname === "" || lname === "") {
         errors.push("Enter your name");
     }
@@ -39,10 +40,6 @@ router.post("/registration", (req, res) => {
         errors.push( "Enter your email");
     }
 
-    if (username === "") {
-        errors.push( "Enter your username");
-    }
-
     //There is an error
     if (errors.length > 0) {
         res.render("registration", {
@@ -53,6 +50,8 @@ router.post("/registration", (req, res) => {
     // there is no error
     else {
 
+        roomModel.
+        
         userModel.findOne({ email: req.body.email })
             .then((user) => {
                 //there was matching email
@@ -68,7 +67,6 @@ router.post("/registration", (req, res) => {
                         fname: fname,
                         lname: lname,
                         email: email,
-                        username: username,
                         password2: password2
                     }
 
@@ -106,18 +104,18 @@ router.post("/registration", (req, res) => {
                 });
             
             
-                res.render('Login', {username: req.body.fname});
+                res.render('login', {username: req.body.fname});
             }
         
         });
     }           
 });
 
-router.get("/Login",(req,res)=>{
-    res.render("Login");
+router.get("/login",(req,res)=>{
+    res.render("login");
 });
 
-router.post("/Login", (req,res)=>{
+router.post("/login", (req,res)=>{
     const errors = [];
     const email = req.body.email;
     const password2 = req.body.password2;
@@ -128,7 +126,7 @@ router.post("/Login", (req,res)=>{
   
     //There is an error
     if (errors.length > 0) {
-        res.render("Login", {
+        res.render("login", {
             messages: errors,
         })
     }
@@ -139,9 +137,10 @@ router.post("/Login", (req,res)=>{
         .then((user) => {
                 //there was no matching username
                 //Cannot find user
+                console.log("user:", user)
                 if (user === null) {
                     errors.push("You enter wrong email");
-                    res.render("Login", {
+                    res.render("login", {
                         messages: errors
                     })
 
@@ -151,29 +150,32 @@ router.post("/Login", (req,res)=>{
                     bcrypt.compare(req.body.password2, user.password2)
                         .then((isCorrect) => {
                             if (isCorrect == true) {
-                                req.session.userInfo = {
-                                    isAdmin:user.isAdmin,
-                                    fname:user.fname,
-                                    lname:user.lname,
-                                    email: user.email ,
-                                    password2: user.password2
-                                };
-                                console.log(user.type);
+                                // req.session.userInfo = {
+                                //     isAdmin:user.isAdmin,
+                                //     fname:user.fname,
+                                //     lname:user.lname,
+                                //     email: user.email ,
+                                //     password2: user.password2
+                                // };
+                                req.session.user = user;
+                                console.log("session:", req.session.user);
 
+                                
                                 if(!user.isAdmin)
                                 {
-                                  res.render('userDashboard', {lastName: user.lname, firstName: user.fname, userSession:req.session.userInfo, isAdmin: user.isAdmin});
+                                    res.redirect('/userDashboard');
+                                //   res.render('userDashboard', { fname: user.fname, lname: user.lname, isAdmin: user.isAdmin });
                                 }
-                                
-                                else
+                                else 
                                 {
-                                  res.render('adminDashboard', {firstName: user.fname,lastName: user.lname,userSession:req.session.userInfo, isAdmin: user.isAdmin});
+                                    res.redirect('/adminDashboard');
+                                //   res.render('adminDashboard', { fname: user.fname, lname: user.lname, isAdmin: user.isAdmin });
                                 }
                             }
                             //password doesn't match
                             else {
                                 errors.push( "Your password does not match" );
-                                res.render("Login", {
+                                res.render("login", {
                                     messages: errors
                                 })
                             }
@@ -186,21 +188,19 @@ router.post("/Login", (req,res)=>{
 });
 
 
-router.get("/logout", (req,res)=>{
+router.get("/logout", authenticated, (req,res)=>{
     req.session.destroy();
+    req.session.reset();
     res.redirect('/');
 })
 
 
-router.get("/userDashboard", function (req, res) {
-    res.render('userDashboard',{userSession: req.session.userInfo, 
-        isAdmin:req.session.userInfo.isAdmin, 
-        lastName: req.session.userInfo.lname, 
-        firstName:req.session.userInfo.fname});
+router.get("/userDashboard", authenticated, function (req, res) {
+    res.render('userDashboard', { fname: req.session.user.fname, lname: req.session.user.lname, isAdmin: req.session.user.isAdmin });
 });
 
-router.get("/adminDashboard", function (req, res) {
-res.render('adminDashboard');
+router.get("/adminDashboard", authenticated, function (req, res) {
+    res.render('adminDashboard', { fname: req.session.user.fname, lname: req.session.user.lname, isAdmin: req.session.user.isAdmin });
 });
 
   

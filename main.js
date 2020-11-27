@@ -14,7 +14,7 @@ app.engine('.hbs', hbs({ extname: '.hbs', defaultLayout: 'main'}));
 app.set('view engine', '.hbs');
 app.use(express.static("public"));
 
-//session 
+//session... ?
 app.use(clientSessions ({
   cookieName:"session",
   secret:"web322_Tamhome",
@@ -24,7 +24,7 @@ app.use(clientSessions ({
 
 
 app.use((req,res,next)=>{
-  res.locals.user= req.session.userInfo;
+  res.locals.user= req.session.user;
   next();
 })
 
@@ -33,9 +33,9 @@ app.use("/", control);
 
 
 
-// mongo db connection
+// mongo db connection: mongodb atlas
 const connStr = config.dbconn;
-mongoose.connect(connStr, { useNewUrlParser: true, useUnifiedTopology: true, useCreateIndex: true });
+mongoose.connect("mongodb://localhost/tamhome", { useNewUrlParser: true, useUnifiedTopology: true, useCreateIndex: true });
 mongoose.connection.on("open", () => {
   console.log("Database connection open.");
 });
@@ -43,11 +43,32 @@ mongoose.connection.on("open", () => {
 
 // normal files
 app.get("/", function (req, res) {
-  res.render('home');
+  if(req.session.user) {
+    res.locals.user = req.session.user;
+    res.render('home', { fname: req.session.user.fname, lname: req.session.user.lname, isAdmin: req.session.user.isAdmin });
+  } else {
+    res.render('home');
+  }
+});
+
+
+app.get('/admin/room/add',function(req,res){
+  res.render('addRome')
+});
+
+app.get('/admin/room/edit',function(req,res){
+  res.render('editRome')
+});
+
+app.get('/admin/room/delete',function(req,res){
+  res.render('deleteRome')
 });
 
 app.get("/search", function (req, res) {
    res.render('search');
+});
+app.get("/roomList", function (req, res) {
+  res.render('roomList');
 });
 
 app.get("/upload", function (req, res) {
