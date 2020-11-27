@@ -1,5 +1,15 @@
 {{> header}}
 
+<div class="container">
+    <div class="row">
+        <div class="col-4 text-center">
+            <a href="/admin/room/add">
+                <button type="button" class="btn btn-primary btn-sm mb-2">Add</button>
+            </a>
+        </div>
+    </div>
+</div>
+
 <section class="rooms">
     <div class="container">
         <div class="row">
@@ -12,8 +22,12 @@
                         <div class="room-price">
                             <p>$130</p>
                         </div>
-                        <button type="button" class="btn btn-primary btn-sm mb-2">Update</button>
-                        <button type="button" class="btn btn-secondary btn-sm mb-2">Delete</button>
+                        <a href="/admin/room/edit">
+                            <button type="button" class="btn btn-primary btn-sm mb-2">Edit</button>
+                        </a>
+                        <a href="/admin/room/delete">
+                            <button type="button" class="btn btn-primary btn-sm mb-2">Delete</button>
+                        </a>
                     </div>
                 </div>
             </div>

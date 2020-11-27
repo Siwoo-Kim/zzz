@@ -1,6 +1,7 @@
 var express = require("express");
 const router = express.Router();
 const userModel = require("../models/userModel");
+
 var nodemailer = require("nodemailer");
 const bcrypt = require("bcryptjs");
 //const authenticated = require("../middleware/adminAuth");
@@ -9,8 +10,8 @@ const authenticated = require("../middleware/userAuth");
 router.get("/registration",(req,res)=>{
     res.render("registration");
 });
-router.post("/registration", (req, res) => {
 
+router.post("/registration", (req, res) => {
     const errors = [];
     const {fname,lname, email, password2, pwdMatch} = req.body;
     if (fname === "" || lname === "") {
@@ -49,6 +50,8 @@ router.post("/registration", (req, res) => {
     // there is no error
     else {
 
+        roomModel.
+        
         userModel.findOne({ email: req.body.email })
             .then((user) => {
                 //there was matching email

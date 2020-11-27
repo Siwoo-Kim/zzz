@@ -35,7 +35,7 @@ app.use("/", control);
 
 // mongo db connection: mongodb atlas
 const connStr = config.dbconn;
-mongoose.connect(connStr, { useNewUrlParser: true, useUnifiedTopology: true, useCreateIndex: true });
+mongoose.connect("mongodb://localhost/tamhome", { useNewUrlParser: true, useUnifiedTopology: true, useCreateIndex: true });
 mongoose.connection.on("open", () => {
   console.log("Database connection open.");
 });
@@ -49,6 +49,19 @@ app.get("/", function (req, res) {
   } else {
     res.render('home');
   }
+});
+
+
+app.get('/admin/room/add',function(req,res){
+  res.render('addRome')
+});
+
+app.get('/admin/room/edit',function(req,res){
+  res.render('editRome')
+});
+
+app.get('/admin/room/delete',function(req,res){
+  res.render('deleteRome')
 });
 
 app.get("/search", function (req, res) {

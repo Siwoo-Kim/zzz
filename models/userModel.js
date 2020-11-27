@@ -9,13 +9,9 @@ var userSchema = new Schema({
         type:String,
         unique:true
     },
-        
     fname: String,
-
     lname: String, 
-
     password2:String, 
- 
     isAdmin:{
         type:Boolean,
         default:false
@@ -35,3 +31,6 @@ userSchema.pre("save",function(next){
 })
 
 module.exports = mongoose.model("Users", userSchema);
+
+
+ 
